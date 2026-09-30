@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'rooms/own', to: 'rooms#own'
+
   resources :rooms
 
   devise_for :users, controllers: {

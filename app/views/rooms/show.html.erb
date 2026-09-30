@@ -1,10 +1,12 @@
+<%= render "search", room: @room %>
+
 <div>
-  <%= link_to "←戻る", rooms_path %>
+  <%= link_to "←戻る", :back %>
   <%= link_to "🖊編集", edit_room_path(@room) %>
 </div>
 
 <% if @room.image.attached? %>
-  <%= image_tag @room.image %>
+  <%= image_tag @room.image, style: "width :150px; height :auto;" %>
 <% end %>
 
 <div>

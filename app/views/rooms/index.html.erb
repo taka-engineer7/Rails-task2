@@ -1,12 +1,20 @@
-<p>〇件が見つかりました。</p>
+<%= render "search", room: @room %>
+
+<p><%= @rooms.count %>件が見つかりました。</p>
 
 <% @rooms.each do |room| %>
-  <% if room.image.attached? %>
-    <%= image_tag room.image %>
-  <% end %>
-  <%= room.name %>
-  <%= room.address %>
-  <%= room.description %>
-  <%= room.price %>
-  <%= link_to "詳細はこちら", room_path(room) %>
+
+  <div>
+    <% if room.image.attached? %>
+      <%= image_tag room.image, style: "width: 150px; height: auto;" %>
+    <% else %>
+      <%= image_tag "default-image.png", style: "width: 150px; height: auto;" %>
+    <% end %>
+    <%= room.name %>
+    <%= room.address %>
+    <%= room.description %>
+    <%= room.price %>
+    <%= link_to "詳細はこちら", room_path(room) %>
+  </div>
+
 <% end %>
