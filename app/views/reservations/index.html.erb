@@ -1,0 +1,49 @@
+<h1>予約済み一覧</h1>
+
+<table>
+  <tr>
+    <th>画像</th><th>施設名</th><th>紹介文</th><th>合計料金</th><th>チェックイン</th><th>チェックアウト</th><th>予約確定日時</th>
+  </tr>
+  
+  <% @reservations.each do |reservation| %>
+
+  <tr>
+    <td>
+      <% if reservation.room.image.attached? %>
+        <%= image_tag reservation.room.image, style: "width: 150px; height: auto;" %>
+      <% else %>
+        <%= image_tag "default-image.png", style: "width: 150px; height: auto;" %>
+      <% end %>    
+    </td>
+    <td>
+      <%= link_to reservation.room.name, room_path(reservation.room) %>
+    </td>
+    <td>
+      <%= reservation.room.description %>
+    </td>
+    <td>
+      <%= reservation.room.price %>
+    </td>
+    <td>
+      <%= reservation.checkin_at %>
+    </td>
+    <td>
+      <%= reservation.checkout_at %>
+    </td>
+    <td>
+      <%= reservation.created_at %>
+    </td>
+    <td>
+      <details class="dropdown">
+        <summary class="dropdown-icon">⋮</summary>
+        <div class="dropdown-menu">
+          <%= link_to "再予約", edit_reservation_path(reservation.id), class: "dropdown-item" %>
+          <%= link_to "予約を削除", "/reservation", 
+                  data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, 
+                  class: "dropdown-item text-danger" %>
+        </div>
+      </details>
+    </td>
+  </tr>
+  <% end %>
+</table>

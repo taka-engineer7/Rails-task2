@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_many :rooms
+  has_many :reservatons
 end

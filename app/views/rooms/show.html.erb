@@ -16,20 +16,21 @@
   <%= @room.description %>
 </div>
 
-<%= form_with model: @room do |form| %>
+<%= form_with url: "/reservations/confirm", model: @reservation, data: { turbo: false } do |form| %>
+  <%= form.hidden_field :room_id, value: @room.id %>
   <div>
-    <%= form.label :check_in, "チェックイン" %>
-    <%= form.date_field :check_in %>
+    <%= form.label :checkin_at, "チェックイン" %>
+    <%= form.date_field :checkin_at %>
   </div>
 
   <div>
-    <%= form.label :check_out, "チェックアウト" %>
-    <%= form.date_field :check_out %>
+    <%= form.label :checkout_at, "チェックアウト" %>
+    <%= form.date_field :checkout_at %>
   </div>
 
   <div>
-    <%= form.label :people_number, "人数" %>
-    <%= form.number_field :people_number %>
+    <%= form.label :guest_count, "人数" %>
+    <%= form.number_field :guest_count %>
   </div>
 
   <%= form.submit "予約する" %>
