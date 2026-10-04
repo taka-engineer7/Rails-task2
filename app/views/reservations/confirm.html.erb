@@ -28,13 +28,23 @@
 
 <p>上記内容で正しければ「確定」ボタンを押してください。</p>
 
-<%= form_with model: @reservation, url: reservations_path, data: { turbo: false }, method: :post do |f| %>
-  <%= f.hidden_field :checkin_at %>
-  <%= f.hidden_field :checkout_at %>
-  <%= f.hidden_field :guest_count %>
-  <%= f.hidden_field :room_id %>
-
-  <%= f.submit "予約を確定" %>
+<% if @reservation.persisted? %>  
+  <%= form_with model: @reservation, url: reservation_path(@reservation.id), method: :patch, data: { turbo: false } do |f| %>
+    <%= f.hidden_field :checkin_at %>
+    <%= f.hidden_field :checkout_at %>
+    <%= f.hidden_field :guest_count %>
+    <%= f.hidden_field :room_id %>
+    <%= f.hidden_field :id %>
+    <%= f.submit "予約を確定" %>
+  <% end %>
+<% else %>
+  <%= form_with model: @reservation, url: reservations_path, method: :post, data: { turbo: false } do |f| %>
+    <%= f.hidden_field :checkin_at %>
+    <%= f.hidden_field :checkout_at %>
+    <%= f.hidden_field :guest_count %>
+    <%= f.hidden_field :room_id %>
+    <%= f.submit "予約を確定" %>
+  <% end %>
 <% end %>
 
 <%= link_to "キャンセル", :back %>

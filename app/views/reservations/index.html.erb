@@ -22,7 +22,8 @@
       <%= reservation.room.description %>
     </td>
     <td>
-      <%= reservation.room.price %>
+      <% stay_days = (reservation.checkout_at - reservation.checkin_at).to_i %>
+      ¥<%= reservation.room.price * stay_days * reservation.guest_count %>  
     </td>
     <td>
       <%= reservation.checkin_at %>
@@ -38,7 +39,7 @@
         <summary class="dropdown-icon">⋮</summary>
         <div class="dropdown-menu">
           <%= link_to "再予約", edit_reservation_path(reservation.id), class: "dropdown-item" %>
-          <%= link_to "予約を削除", "/reservation", 
+          <%= link_to "予約を削除", reservation_path(reservation), 
                   data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, 
                   class: "dropdown-item text-danger" %>
         </div>

@@ -5,8 +5,14 @@ class ReservationsController < ApplicationController
   end
 
   def confirm
-    @reservation = Reservation.new(reservation_params)
     @room = Room.find(params[:reservation][:room_id])
+
+    if params[:reservation][:id].present?
+      @reservation = Reservation.find(params[:reservation][:id])
+      @reservation.assign_attributes(reservation_params)
+    else
+      @reservation = Reservation.new(reservation_params)
+    end
   end
 
   def create
@@ -28,7 +34,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
 
     if @reservation.update(reservation_params)
-      redirect_to confirm_reservation_path
+      redirect_to reservations_path
     else
       render :edit
     end
@@ -44,6 +50,6 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:checkin_at, :checkout_at, :guest_count, :room_id, :user_id)
+    params.require(:reservation).permit(:checkin_at, :checkout_at, :guest_count, :user_id, :room_id, :id)
   end
 end
