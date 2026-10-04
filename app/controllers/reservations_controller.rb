@@ -9,9 +9,18 @@ class ReservationsController < ApplicationController
 
     if params[:reservation][:id].present?
       @reservation = Reservation.find(params[:reservation][:id])
+      @reservation.user_id = current_user.id
       @reservation.assign_attributes(reservation_params)
     else
       @reservation = Reservation.new(reservation_params)
+      @reservation.user_id = current_user.id
+    end
+
+    if @reservation.invalid?
+          puts "========== バリデーションエラーの中身 =========="
+  puts @reservation.errors.full_messages
+  puts "=================================================="
+      render "/rooms/show", status: :unprocessable_entity
     end
   end
 

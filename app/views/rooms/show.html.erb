@@ -1,4 +1,4 @@
-<%= render "search", room: @room %>
+<%= render "rooms/search", room: @room %>
 
 <div>
   <%= link_to "←戻る", :back %>
@@ -21,16 +21,28 @@
   <div>
     <%= form.label :checkin_at, "チェックイン" %>
     <%= form.date_field :checkin_at %>
+
+    <% if @reservation.errors[:checkin_at].any? %>
+      <%= @reservation.errors[:checkin_at].first %>
+    <% end %>
   </div>
 
   <div>
     <%= form.label :checkout_at, "チェックアウト" %>
     <%= form.date_field :checkout_at %>
+
+    <% if @reservation.errors[:checkout_at].any? %>
+      <%= @reservation.errors[:checkout_at].first %>
+    <% end %>
   </div>
 
   <div>
     <%= form.label :guest_count, "人数" %>
     <%= form.number_field :guest_count %>
+
+    <% if @reservation.errors[:guest_count].any? %>
+      <%= @reservation.errors[:guest_count].first %>
+    <% end %>
   </div>
 
   <%= form.submit "予約する" %>

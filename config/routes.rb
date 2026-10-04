@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   get 'rooms/own', to: 'rooms#own'
-  post 'reservations/confirm', to: 'reservations#confirm'
-
-  resources :reservations
+  
+  resources :reservations do
+    collection do
+      post :confirm
+      patch :confirm
+    end
+  end
 
   resources :rooms
 
