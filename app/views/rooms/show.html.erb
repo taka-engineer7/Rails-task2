@@ -45,5 +45,11 @@
     <% end %>
   </div>
 
-  <%= form.submit "予約する" %>
+  <div>
+    <% if user_signed_in? %>
+      <%= form.submit "予約する" %>
+    <% else %>
+      <%= link_to "ログイン", "/users/sign_in" %>
+    <% end %>
+  </div>
 <% end %>

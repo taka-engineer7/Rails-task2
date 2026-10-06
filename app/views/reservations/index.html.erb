@@ -22,8 +22,7 @@
       <%= reservation.room.description %>
     </td>
     <td>
-      <% stay_days = (reservation.checkout_at - reservation.checkin_at).to_i %>
-      ¥<%= reservation.room.price * stay_days * reservation.guest_count %>  
+      ¥<%= (reservation.checkout_at - reservation.checkin_at).to_i * reservation.room.price * reservation.guest_count %>  
     </td>
     <td>
       <%= reservation.checkin_at %>
