@@ -36,5 +36,5 @@
   </div>
 
   <%= form.submit "保存" %>
-  <%= link_to "キャンセル", :back %>
+  <%= link_to "キャンセル", request.referer || root_path %>
 <% end %>

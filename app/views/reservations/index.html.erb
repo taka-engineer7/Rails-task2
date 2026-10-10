@@ -25,24 +25,30 @@
       ¥<%= (reservation.checkout_at - reservation.checkin_at).to_i * reservation.room.price * reservation.guest_count %>  
     </td>
     <td>
-      <%= reservation.checkin_at %>
+      <%= reservation.checkin_at.strftime("%Y/%m/%d") %>
     </td>
     <td>
-      <%= reservation.checkout_at %>
+      <%= reservation.checkout_at.strftime("%Y/%m/%d") %>
     </td>
     <td>
-      <%= reservation.created_at %>
+      <%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %>
     </td>
     <td>
-      <details class="dropdown">
-        <summary class="dropdown-icon">⋮</summary>
-        <div class="dropdown-menu">
-          <%= link_to "再予約", edit_reservation_path(reservation.id), class: "dropdown-item" %>
-          <%= link_to "予約を削除", reservation_path(reservation), 
+      <div class="dropdown">
+        <button class="btn btn-link text-dark text-decoration-none fs-4 p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        ⋮
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+          <li>
+            <%= link_to "再予約", edit_reservation_path(reservation.id), class: "dropdown-item" %>
+          </li>
+          <li>
+            <%= link_to "予約を削除", reservation_path(reservation), 
                   data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, 
                   class: "dropdown-item text-danger" %>
-        </div>
-      </details>
+          </li>
+        </ul>
+      </div>
     </td>
   </tr>
   <% end %>

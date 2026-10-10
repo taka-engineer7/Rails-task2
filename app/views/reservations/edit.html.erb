@@ -1,13 +1,15 @@
 <h1>再予約する</h1>
 
-<% if @reservation.room.image.attached? %>
-  <%= image_tag @reservation.room.image, style: "width: 150px; height: auto;" %>
-<% else %>
-  <%= image_tag "default-image.png", style: "width: 150px; height: auto;" %>
-<% end %>   
+<div>
+  <% if @reservation.room.image.attached? %>
+    <%= image_tag @reservation.room.image, style: "width: 300px; height: auto;" %>
+  <% else %>
+    <%= image_tag "default-image.png", style: "width: 300px; height: auto;" %>
+  <% end %>   
+</div>
 
 <%= @reservation.room.name %>
-<%= @reservation.room.price %>
+￥<%= @reservation.room.price %>～
 <%= @reservation.room.address %>
 <%= @reservation.room.description %>
 
@@ -34,5 +36,5 @@
 
 <% end %>
 
-<%= link_to "キャンセル", :back %>
+<%= link_to "キャンセル", request.referer || root_path %>
 

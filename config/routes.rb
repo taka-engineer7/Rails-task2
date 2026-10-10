@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  get "home/index"
   get 'rooms/own', to: 'rooms#own'
+
+  root "home#index"
   
   resources :reservations do
     collection do

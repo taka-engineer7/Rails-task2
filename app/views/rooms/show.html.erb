@@ -6,14 +6,16 @@
 </div>
 
 <% if @room.image.attached? %>
-  <%= image_tag @room.image, style: "width :150px; height :auto;" %>
+  <%= image_tag @room.image, style: "width :300px; height :auto;" %>
+<% else %>
+  <%= image_tag "default-image.png", style: "width: 300px; height: auto;" %>
 <% end %>
 
 <div>
-  <%= @room.name %>
-  <%= @room.address %>
-  <%= @room.price %>
-  <%= @room.description %>
+  <p><%= @room.name %></p>
+  <p><%= @room.address %></p>
+  <p>￥<%= @room.price %>～</p>
+  <p><%= @room.description %></p>
 </div>
 
 <%= form_with url: "/reservations/confirm", model: @reservation, data: { turbo: false } do |form| %>
