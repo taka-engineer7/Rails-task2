@@ -1,10 +1,10 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>アカウント</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <p><%= f.label :email %></p>
+    <p><%= f.label :email, "メールアドレス" %></p>
     <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
   </div>
 
@@ -13,20 +13,19 @@
   <% end %>
 
   <div class="field">
-    <p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></p>
+    <p><%= f.label :password,"変更後パスワード" %></p>
     <p><%= f.password_field :password, autocomplete: "new-password" %></p>
-    <% if @minimum_password_length %>
-      <p><em><%= @minimum_password_length %> characters minimum</em></p>
-    <% end %>
+    <p>※変更する場合のみ</p>
   </div>
 
   <div class="field">
-    <p><%= f.label :password_confirmation %></p>
+    <p><%= f.label :password_confirmation, "確認用パスワード" %></p>
     <p><%= f.password_field :password_confirmation, autocomplete: "new-password" %></p>
+    <p>※変更する場合のみ</p>
   </div>
 
   <div class="field">
-    <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></p>
+    <p><%= f.label :current_password, "現在のパスワード" %></p>
     <p><%= f.password_field :current_password, autocomplete: "current-password" %></p>
   </div>
 

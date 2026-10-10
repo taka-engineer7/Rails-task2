@@ -1,0 +1,20 @@
+<h1>プロフィール</h1>
+
+<p>アイコン画像</p>
+<% if @user.avatar.attached? %>
+  <%= image_tag @user.avatar, size: '150x100' %>
+<% else %>
+  <%= image_tag'default_avatar.png', size: '150x100' %>
+<% end %>
+
+<p>名前</p>
+<%= @user.name %>
+
+<p>自己紹介</p>
+<%= @user.introduction %>
+
+<%= link_to "編集", "/users/profile/edit" %>
+
+<h1>設定</h1>
+<p><%= link_to "アカウント", "/users/account" %></p>
+<p><%= link_to "プロフィール", "/users/profile" %></p>

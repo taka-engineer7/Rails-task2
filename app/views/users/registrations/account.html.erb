@@ -1,0 +1,13 @@
+<h1>アカウント</h1>
+
+<p>メールアドレス</p>
+<%= @user.email %>
+
+<p>パスワード</p>
+<p>*********</p>
+
+<%= link_to "編集", "/users/edit" %>
+
+<h1>設定</h1>
+<p><%= link_to "アカウント", "/users/account" %></p>
+<p><%= link_to "プロフィール", "/users/profile" %></p>

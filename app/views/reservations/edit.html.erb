@@ -1,0 +1,40 @@
+<h1>再予約する</h1>
+
+<div>
+  <% if @reservation.room.image.attached? %>
+    <%= image_tag @reservation.room.image, style: "width: 300px; height: auto;" %>
+  <% else %>
+    <%= image_tag "default-image.png", style: "width: 300px; height: auto;" %>
+  <% end %>   
+</div>
+
+<%= @reservation.room.name %>
+￥<%= @reservation.room.price %>～
+<%= @reservation.room.address %>
+<%= @reservation.room.description %>
+
+<%= form_with model: @reservation, url: "/reservations/confirm", method: :post, data: { turbo: false } do |f| %>
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :room_id %>
+  
+  <div>
+    <%= f.label :checkin_at, "チェックイン" %>
+    <%= f.date_field :checkin_at %>
+  </div>
+
+  <div>
+    <%= f.label :checkout_at, "チェックアウト" %>
+    <%= f.date_field :checkout_at %>
+  </div>
+
+  <div>
+    <%= f.label :guest_count, "人数" %>
+    <%= f.number_field :guest_count %>
+  </div>
+
+  <%= f.submit "再予約する" %>
+
+<% end %>
+
+<%= link_to "キャンセル", request.referer || root_path %>
+
