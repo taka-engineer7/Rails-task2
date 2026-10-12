@@ -1,55 +1,57 @@
-<h1>予約済み一覧</h1>
+<div class="p-5">
+  <h3 class= "pb-4">予約済み一覧</h3>
 
-<table>
-  <tr>
-    <th>画像</th><th>施設名</th><th>紹介文</th><th>合計料金</th><th>チェックイン</th><th>チェックアウト</th><th>予約確定日時</th>
-  </tr>
-  
-  <% @reservations.each do |reservation| %>
+  <table class= "w-100">
+    <tr style="border-bottom: 1px solid black;" class="justify-content-between">
+      <th>画像</th><th>施設名</th><th>紹介文</th><th>合計料金</th><th>チェックイン</th><th>チェックアウト</th><th>予約確定日時</th>
+    </tr>
+    
+    <% @reservations.each do |reservation| %>
 
-  <tr>
-    <td>
-      <% if reservation.room.image.attached? %>
-        <%= image_tag reservation.room.image, style: "width: 150px; height: auto;" %>
-      <% else %>
-        <%= image_tag "default-image.png", style: "width: 150px; height: auto;" %>
-      <% end %>    
-    </td>
-    <td>
-      <%= link_to reservation.room.name, room_path(reservation.room) %>
-    </td>
-    <td>
-      <%= reservation.room.description %>
-    </td>
-    <td>
-      ¥<%= (reservation.checkout_at - reservation.checkin_at).to_i * reservation.room.price * reservation.guest_count %>  
-    </td>
-    <td>
-      <%= reservation.checkin_at.strftime("%Y/%m/%d") %>
-    </td>
-    <td>
-      <%= reservation.checkout_at.strftime("%Y/%m/%d") %>
-    </td>
-    <td>
-      <%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %>
-    </td>
-    <td>
-      <div class="dropdown">
-        <button class="btn btn-link text-dark text-decoration-none fs-4 p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        ⋮
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-          <li>
-            <%= link_to "再予約", edit_reservation_path(reservation.id), class: "dropdown-item" %>
-          </li>
-          <li>
-            <%= link_to "予約を削除", reservation_path(reservation), 
-                  data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, 
-                  class: "dropdown-item text-danger" %>
-          </li>
-        </ul>
-      </div>
-    </td>
-  </tr>
-  <% end %>
-</table>
+    <tr style="border-bottom: 1px solid #D3D3D3;">
+      <td class="pt-3">
+        <% if reservation.room.image.attached? %>
+          <%= image_tag reservation.room.image, style: "width: 150px; height: auto;" %>
+        <% else %>
+          <%= image_tag "default-image.png", style: "width: 150px; height: auto;" %>
+        <% end %>    
+      </td>
+      <td class="pt-3">
+        <%= link_to reservation.room.name, room_path(reservation.room) %>
+      </td>
+      <td class="pt-3">
+        <%= reservation.room.description %>
+      </td>
+      <td class="pt-3">
+        ¥<%= (reservation.checkout_at - reservation.checkin_at).to_i * reservation.room.price * reservation.guest_count %>  
+      </td>
+      <td class="pt-3">
+        <%= reservation.checkin_at.strftime("%Y/%m/%d") %>
+      </td>
+      <td class="pt-3">
+        <%= reservation.checkout_at.strftime("%Y/%m/%d") %>
+      </td>
+      <td class="pt-3">
+        <%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %>
+      </td>
+      <td class="pt-3">
+        <div class="dropdown">
+          <button class="btn btn-link text-dark text-decoration-none fs-4 p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          ⋮
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+            <li>
+              <%= link_to "再予約", edit_reservation_path(reservation.id), class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to "予約を削除", reservation_path(reservation), 
+                    data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, 
+                    class: "dropdown-item text-danger" %>
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

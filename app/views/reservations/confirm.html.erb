@@ -2,12 +2,12 @@
 
 <div>
   <p>チェックイン</p>
-  <%= @reservation.checkin_at %>
+  <%= @reservation.checkin_at.strftime("%Y/%m/%d") %>
 </div>
 
 <div>
   <p>チェックアウト</p>
-  <%= @reservation.checkout_at %>
+  <%= @reservation.checkout_at.strftime("%Y/%m/%d") %>
 </div>
 
 <div>
