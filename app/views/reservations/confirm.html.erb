@@ -1,50 +1,54 @@
-<h1>予約内容の確認</h1>
+<div class="d-flex justify-content-center">
+  <div class="m-5" style="width: 700px;">
+    <h3 class="mb-4">予約内容の確認</h3>
 
-<div>
-  <p>チェックイン</p>
-  <%= @reservation.checkin_at.strftime("%Y/%m/%d") %>
+    <div class="d-flex justify-content-between">
+      <p class="fw-bold">チェックイン</p>
+      <%= @reservation.checkin_at.strftime("%Y/%m/%d") %>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <p class="fw-bold">チェックアウト</p>
+      <%= @reservation.checkout_at.strftime("%Y/%m/%d") %>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <p class="fw-bold">日数</p>
+      <%= (@reservation.checkout_at - @reservation.checkin_at).to_i %>日
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <p class="fw-bold">人数</p>
+      <%= @reservation.guest_count %>人
+    </div>
+
+    <div class="d-flex justify-content-between fw-bold">
+      <p class="fw-bold">お支払金額</p>
+      <% stay_days = (@reservation.checkout_at - @reservation.checkin_at).to_i %>
+      ¥<%= @room.price * stay_days * @reservation.guest_count %>
+    </div>
+
+    <p>上記内容で正しければ「確定」ボタンを押してください。</p>
+
+    <% if @reservation.persisted? %>  
+      <%= form_with model: @reservation, url: reservation_path(@reservation.id), method: :patch, data: { turbo: false } do |f| %>
+        <%= f.hidden_field :checkin_at %>
+        <%= f.hidden_field :checkout_at %>
+        <%= f.hidden_field :guest_count %>
+        <%= f.hidden_field :room_id %>
+        <%= f.hidden_field :id %>
+        <%= f.submit "予約を確定" %>
+      <% end %>
+    <% else %>
+      <%= form_with model: @reservation, url: reservations_path, method: :post, data: { turbo: false } do |f| %>
+        <%= f.hidden_field :checkin_at %>
+        <%= f.hidden_field :checkout_at %>
+        <%= f.hidden_field :guest_count %>
+        <%= f.hidden_field :room_id %>
+        <%= f.submit "予約を確定", class: "form-control form-control-lg text-white text-decoration-none text-center", style: "background-color: #ff7f50;" %>
+      <% end %>
+    <% end %>
+
+    <%= link_to "キャンセル", request.referer || root_path, class: "form-control form-control-lg text-decoration-none text-black text-center mt-3"  %>
+  </div>
 </div>
-
-<div>
-  <p>チェックアウト</p>
-  <%= @reservation.checkout_at.strftime("%Y/%m/%d") %>
-</div>
-
-<div>
-  <p>日数</p>
-  <%= (@reservation.checkout_at - @reservation.checkin_at).to_i %>
-</div>
-
-<div>
-  <p>人数</p>
-  <%= @reservation.guest_count %>
-</div>
-
-<div>
-  <p>お支払金額</p>
-  <% stay_days = (@reservation.checkout_at - @reservation.checkin_at).to_i %>
-  ¥<%= @room.price * stay_days * @reservation.guest_count %>
-</div>
-
-<p>上記内容で正しければ「確定」ボタンを押してください。</p>
-
-<% if @reservation.persisted? %>  
-  <%= form_with model: @reservation, url: reservation_path(@reservation.id), method: :patch, data: { turbo: false } do |f| %>
-    <%= f.hidden_field :checkin_at %>
-    <%= f.hidden_field :checkout_at %>
-    <%= f.hidden_field :guest_count %>
-    <%= f.hidden_field :room_id %>
-    <%= f.hidden_field :id %>
-    <%= f.submit "予約を確定" %>
-  <% end %>
-<% else %>
-  <%= form_with model: @reservation, url: reservations_path, method: :post, data: { turbo: false } do |f| %>
-    <%= f.hidden_field :checkin_at %>
-    <%= f.hidden_field :checkout_at %>
-    <%= f.hidden_field :guest_count %>
-    <%= f.hidden_field :room_id %>
-    <%= f.submit "予約を確定" %>
-  <% end %>
-<% end %>
-
-<%= link_to "キャンセル", :back %>

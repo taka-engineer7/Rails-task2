@@ -62,7 +62,7 @@
           <% if user_signed_in? %>
             <%= form.submit "予約する", class: "form-control form-control-lg text-white mt-4", style: "background-color: #ff7f50;" %>
           <% else %>
-            <%= link_to "ログイン", "/users/sign_in" %>
+            <%= link_to "ログイン", "/users/sign_in", class: "form-control form-control-lg text-white text-decoration-none text-center mt-4", style: "background-color: #ff7f50;" %>
           <% end %>
         </div>
       <% end %>
