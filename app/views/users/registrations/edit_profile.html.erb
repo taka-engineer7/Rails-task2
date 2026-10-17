@@ -1,0 +1,27 @@
+<h1>プロフィール</h1>
+
+<%= form_with model: @user, url: user_registration_path, method: :put, local: true do |f| %>
+
+<p>アイコン画像</p>
+<% if @user.avatar.attached? %>
+  <%= image_tag @user.avatar, size: '150x150' %>
+  <%= f.file_field :avatar %>
+<% else %>
+  <%= image_tag'default_avatar.png', size: '150x150' %>
+  <%= f.file_field :avatar %>
+<% end %>
+
+<p>名前</p>
+<%= f.text_field :name %>
+
+<p>自己紹介</p>
+<%= f.text_area :introduction %>
+
+<%= link_to "キャンセル", "/users/profile" %>
+<%= f.submit "保存" %>
+
+<% end %>
+
+<h1>設定</h1>
+<p><%= link_to "アカウント", "/users/account" %></p>
+<p><%= link_to "プロフィール", "/users/profile" %></p>
