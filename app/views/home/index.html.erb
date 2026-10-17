@@ -1,9 +1,9 @@
 <div class= "text-center vh-100 d-flex flex-column justify-content-center align-items-center mb-5 " style="background-image: url('<%= asset_path('home-image.jpg')%>'); background-size: cover; background-position: center;">
   <h1 class= "display-1 fw-bold text-white">Potepan Shareで<br>まだ体験したことのない<br>旅をしよう</h1>
-  <div>
+  <div class="p-3" style="width: 600px; background-color: rgba(255, 255, 255, 0.4);">
     <%= form_with url: rooms_path, method: :get do |f| %>
       <%= f.text_field :area, placeholder: "エリア名を入力", class: "form-control form-control-lg" %>
-      <br><%= f.submit "検索", class: "btn btn-lg text-white", style: "background-color: #ff7f50;" %>
+      <%= f.submit "検索", class: "form-control form-control-lg text-white mt-2", style: "background-color: #ff7f50;" %>
     <% end %>
   </div>
 </div>
