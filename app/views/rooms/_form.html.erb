@@ -1,40 +1,45 @@
-<%= form_with model: @room do |form| %>
+<div style="width: 700px;">
+  <%= form_with model: @room do |form| %>
 
-  <% if @room.errors.any? %>
-  <div style="color: red;">
-    <ul>
-      <% @room.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+    <% if @room.errors.any? %>
+    <div style="color: red;">
+      <ul>
+        <% @room.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="d-flex row align-items-center">
+      <p class="col-3 fw-bold"><%= form.label :name, "施設名" %></p>
+      <p class="col-9"><%= form.text_field :name, class: "form-control form-control-lg light-placeholder", placeholder:"ルーム名を入力" %></p>
+    </div>
+
+    <div class="d-flex row align-items-center">
+      <p class="col-3 fw-bold"><%= form.label :description, "施設詳細" %></p>
+      <p class="col-9"><%= form.text_area :description, class: "form-control form-control-lg light-placeholder", placeholder:"施設情報を入力" %></p>
+    </div>
+
+    <div class="d-flex row align-items-center">
+      <p class="col-3 fw-bold"><%= form.label :price, "料金" %></p>
+      <p class="col-9"><%= form.number_field :price, class: "form-control form-control-lg light-placeholder", placeholder:"1日あたりの料金を入力" %></p>
+    </div>
+
+    <div class="d-flex row align-items-center">
+      <p class="col-3 fw-bold"><%= form.label :address, "住所" %></p>
+      <p class="col-9"><%= form.text_field :address, class: "form-control form-control-lg light-placeholder", placeholder:"住所を入力" %></p>
+    </div>
+
+    <div class="d-flex row mb-3 align-items-center">
+      <p class="col-3 fw-bold"><%= form.label :image, "施設画像" %></p>
+      <div class="col-9">
+        <%= form.file_field :image, id: "custom_image_upload", class: "d-none" %>
+        <label for="custom_image_upload" class="btn btn-light border px-5 py-2">画像アップロード</label>
+      </div>
+    </div>
+
+    <%= form.submit "保存", class: "form-control form-control-lg text-white", style: "background-color: #ff7f50;" %>
+    <%= link_to "キャンセル", request.referer || root_path, class: "form-control form-control-lg text-decoration-none text-black text-center mt-2" %>
   <% end %>
-
-  <div>
-    <%= form.label :name, "施設名" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :description, "施設詳細" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :price, "料金" %>
-    <%= form.number_field :price %>
-  </div>
-
-  <div>
-    <%= form.label :address, "住所" %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div>
-    <%= form.label :image, "施設画像" %>
-    <%= form.file_field :image %>
-  </div>
-
-  <%= form.submit "保存" %>
-  <%= link_to "キャンセル", request.referer || root_path %>
-<% end %>
+</div>

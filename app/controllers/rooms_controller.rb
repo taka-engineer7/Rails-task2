@@ -11,7 +11,7 @@ class RoomsController < ApplicationController
     end
 
     if params[:keyword].present?
-      @rooms = @rooms.where("name LIKE ? OR description LIKE ?", "%#{params[:keyword]}%")
+      @rooms = @rooms.where("name LIKE :kw OR description LIKE :kw OR address LIKE :kw",kw: "%#{params[:keyword]}%")
     end
   end
 
@@ -47,6 +47,12 @@ class RoomsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    room = Room.find(params[:id])
+    room.destroy
+    redirect_to rooms_path, notice: "施設が削除されました"
   end
 
   private

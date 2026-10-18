@@ -37,7 +37,7 @@
         <%= f.hidden_field :guest_count %>
         <%= f.hidden_field :room_id %>
         <%= f.hidden_field :id %>
-        <%= f.submit "予約を確定" %>
+        <%= f.submit "予約を確定", class:"btn btn-lg w-100 text-white text-decoration-none text-center", style: "background-color: #ff7f50;" %>
       <% end %>
     <% else %>
       <%= form_with model: @reservation, url: reservations_path, method: :post, data: { turbo: false } do |f| %>
@@ -45,7 +45,7 @@
         <%= f.hidden_field :checkout_at %>
         <%= f.hidden_field :guest_count %>
         <%= f.hidden_field :room_id %>
-        <%= f.submit "予約を確定", class: "form-control form-control-lg text-white text-decoration-none text-center", style: "background-color: #ff7f50;" %>
+        <%= f.submit "予約を確定", class:"btn btn-lg w-100 text-white text-decoration-none text-center", style: "background-color: #ff7f50;" %>
       <% end %>
     <% end %>
 
