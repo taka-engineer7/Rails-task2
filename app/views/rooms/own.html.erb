@@ -1,0 +1,42 @@
+<div class="p-5">
+  <h3 class="mb-4">登録済み一覧</h3>
+
+  <table class="w-100">
+    <tr style="border-bottom: 1px solid black;", class="justify-content-between">
+      <th>画像</th><th>施設名</th><th>紹介文</th><th>料金</th><th>作成日</th>
+    </tr>
+    <% @rooms.each do |room| %>
+
+      <tr style="border-bottom: 1px solid #D3D3D3;">
+        <td class="pt-3">
+          <% if room.image.attached? %>
+            <%= image_tag room.image, style: "width: 150px; height: auto;" %>
+          <% else %>
+            <%= image_tag "default-image.png", style: "width: 150px; height: auto;" %>
+          <% end %>
+        </td>
+        <td class="pt-3"><%= link_to room.name, room_path(room) %></td>
+        <td class="pt-3"><%= room.description %></td>
+        <td class="pt-3">￥<%= room.price %>～</td>
+        <td class="pt-3"><%= room.created_at.strftime("%Y/%m/%d") %></td>
+        <td class="pt-3">
+          <div class="dropdown">
+            <button class="btn btn-link text-dark text-decoration-none fs-4 p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ⋮
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li>
+                <%= link_to "編集", edit_room_path(room.id), class: "dropdown-item" %>
+              </li>
+              <li>
+                <%= link_to "施設を削除", room_path(room), 
+                      data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, 
+                      class: "dropdown-item text-danger" %>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

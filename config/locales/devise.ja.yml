@@ -1,0 +1,35 @@
+ja:
+  devise:
+    confirmations:
+      confirmed: "アカウントを有効化しました。"
+      send_instructions: "アカウントの有効化について数分以内にメールでご連絡します。"
+      send_paranoid_instructions: "あなたのメールアドレスが登録されている場合、数分以内にアカウントの有効化指示が送信されます。"
+    failure:
+      already_authenticated: "すでにログインしています。"
+      inactive: "アカウントが有効化されていません。"
+      invalid: "%{authentication_keys}またはパスワードが違います。"
+      locked: "あなたのアカウントは凍結されています。"
+      last_attempt: "あなたのアカウントが凍結される前に、もう1回誤ったパスワードを入力できます。"
+      not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
+      timeout: "セッションがタイムアウトしました。もう一度ログインしてください。"
+      unauthenticated: "アカウント登録またはログインが必要です。"
+      unconfirmed: "メールアドレスの確認が必要です。"
+    passwords:
+      no_token: "このページにはアクセスできません。"
+      send_instructions: "パスワードのリセット方法について数分以内にメールでご連絡します。"
+      send_paranoid_instructions: "あなたのメールアドレスが登録されている場合、数分以内にパスワード回復用リンクが送信されます。"
+      updated: "パスワードが正常に変更されました。ログインしました。"
+      updated_not_active: "パスワードが正常に変更されました。"
+    registrations:
+      destroyed: "アカウントを削除しました。またのご利用をお待ちしております。"
+      signed_up: "アカウント登録が完了しました。"
+      signed_up_but_inactive: "アカウントは登録されていますが、有効化されていないためログインできません。"
+      signed_up_but_locked: "アカウントは登録されていますが、凍結されているためログインできません。"
+      signed_up_but_unconfirmed: "確認メールをあなたのメールアドレスに送信しました。リンクを開いてアカウントを有効化してください。"
+      update_needs_confirmation: "アカウント情報を変更しました。変更されたメールアドレスの確認が必要です。"
+      updated: "アカウント情報を変更しました。"
+      updated_by_admin: "アカウント情報を更新しました。"
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+      already_signed_out: "すでにログアウトしています。"

@@ -1,0 +1,7 @@
+<div class=" d-flex justify-content-center pt-4 pb-4 bg-light">
+  <%= form_with url: rooms_path, method: :get do |f| %>
+    <%= f.text_field :area, placeholder: "エリア名を入力", value: params[:area] %>
+    <%= f.text_field :keyword, placeholder: "キーワード名を入力", value: params[:keyword] %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>

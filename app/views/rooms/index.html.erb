@@ -1,0 +1,33 @@
+<%= render "search", room: @room %>
+
+<div class="m-5">
+  <p class="fs-5"><strong><%= @rooms.count %></strong>件が見つかりました。</p>
+  
+  <div class="row row-cols-3 g-4">
+    <% @rooms.each do |room| %>
+      
+      <div class="col">
+        <div class="bg-warning-subtle d-inline-block rounded-5 overflow-hidden">
+          <% if room.image.attached? %>
+            <%= image_tag room.image, style: "width: 450px; height: 200px; object-fit: cover;" %>
+          <% else %>
+            <%= image_tag "default-image.png", style: "width: 450px; height: 200px; object-fit: cover;" %>
+          <% end %>
+          
+          <div class="p-3">
+            <p class="fs-3"><%= room.name %></p>
+            <p><%= room.address %></p>
+            <p>⭐⭐⭐⭐⭐</p>
+            <p><%= room.description %></p>
+            <div class="d-flex justify-content-between">
+              <p class="fs-3" style="color: #ff6f59;">￥<%= room.price %>～</p>
+              <p><%= link_to "詳細はこちら", room_path(room), class: "text-white text-decoration-none btn", style: "background-color: #ff6f59;" %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+

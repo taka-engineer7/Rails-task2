@@ -1,0 +1,52 @@
+<div class="d-flex p-5">
+  <div>
+    <h3>設定</h3>
+    <div class="list-group rounded-0 mt-4" style="width: 300px;">
+      <%= link_to "アカウント", "/users/account", class: "list-group-item list-group-item-action py-4 ps-4 text-decoration-none text-black" %>
+      <%= link_to "プロフィール", "/users/profile", class: "list-group-item list-group-item-action py-4 ps-4 text-decoration-none", style: "color: #ff6f59;" %>
+    </div>
+  </div>
+
+  <div class="ms-4 w-100">
+    <div class="d-flex justify-content-between border-bottom">
+      <h3>プロフィール</h3>
+    </div>
+
+    <%= form_with model: @user, url: user_registration_path, method: :put, local: true do |f| %>
+    
+    <div class="pt-4">
+      <div class="d-flex row">
+        <p class="col-3">アイコン画像</p>
+        <div class="col-9">
+          <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar, size: '150x150' %>
+            <%= f.file_field :avatar %>
+          <% else %>
+            <%= image_tag'default_avatar.png', size: '150x150' %>
+            <%= f.file_field :avatar %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="d-flex row">
+        <p class="col-3">名前</p>
+        <p class="col-9"><%= f.text_field :name, class: "form-control form-control-lg" %></p>
+      </div>
+      
+      <div class="d-flex row">
+        <p class="col-3">自己紹介</p>
+        <p class="col-9"><%= f.text_area :introduction, class: "form-control form-control-lg" %></p>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <div style= "width: 130px;">
+          <%= link_to "キャンセル", "/users/profile", class: "text-decoration-none text-black form-control form-control-lg text-center" %>
+        </div>
+        <div class="actions">
+          <%= f.submit "保存", style: "background-color: #ff7f50; width: 100px; height: 48px;", class: "btn text-white ms-2" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

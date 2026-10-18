@@ -1,0 +1,37 @@
+<div class= "text-center vh-100 d-flex flex-column justify-content-center align-items-center mb-5 " style="background-image: url('<%= asset_path('home-image.jpg')%>'); background-size: cover; background-position: center;">
+  <h1 class= "display-1 fw-bold text-white">Potepan Shareで<br>まだ体験したことのない<br>旅をしよう</h1>
+  <div class="p-3" style="width: 600px; background-color: rgba(255, 255, 255, 0.4);">
+    <%= form_with url: rooms_path, method: :get do |f| %>
+      <%= f.text_field :area, placeholder: "エリア名を入力", class: "form-control form-control-lg" %>
+      <%= f.submit "検索", class: "form-control form-control-lg text-white mt-2", style: "background-color: #ff7f50;" %>
+    <% end %>
+  </div>
+</div>
+
+<div>
+  <h1 class="mb-5 ms-5"><span style="border-bottom: 3px solid #ff7f50; padding-bottom: 10px" >おすすめのエリア</span></h1>
+  
+  <div class="m-5 d-flex justify-content-between">
+
+    <%= link_to rooms_path(area: "東京"), class: "position-relative" do %>
+      <%= image_tag 'tokyo.jpg', size: '300x400', class: 'rounded-5' %>
+      <h3 class="position-absolute bottom-0 start-0 text-white">東京<br>📍Tokyo</h3>
+    <% end %>
+
+    <%= link_to rooms_path(area: "大阪"), class: "position-relative" do %>
+      <%= image_tag 'osaka.jpg', size: '300x400', class: 'rounded-5' %>
+      <h3 class="position-absolute bottom-0 start-0 text-white">大阪<br>📍Osaka</h3>
+    <% end %>
+
+    <%= link_to rooms_path(area: "京都"), class: "position-relative" do %>
+      <%= image_tag 'kyoto.jpg', size: '300x400', class: 'rounded-5' %>
+      <h3 class="position-absolute bottom-0 start-0 text-white">京都<br>📍Kyoto</h3>
+    <% end %>
+
+    <%= link_to rooms_path(area: "札幌"), class: "position-relative" do %> 
+      <%= image_tag 'saporo.jpg', size: '300x400', class: 'rounded-5' %>
+      <h3 class="position-absolute bottom-0 start-0 text-white">札幌<br>📍Sapporo</h3>
+    <% end %>  
+  </div>
+
+<div>

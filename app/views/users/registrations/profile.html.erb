@@ -1,0 +1,40 @@
+<div class="d-flex p-5">
+  <div>
+    <h3>設定</h3>
+    <div class="list-group rounded-0 mt-4" style="width: 300px;">
+      <%= link_to "アカウント", "/users/account", class: "list-group-item list-group-item-action py-4 ps-4 text-decoration-none text-black" %>
+      <%= link_to "プロフィール", "/users/profile", class: "list-group-item list-group-item-action py-4 ps-4 text-decoration-none", style: "color: #ff6f59;" %>
+    </div>
+  </div>
+
+  <div class="ms-4 w-100">
+    <div class="d-flex justify-content-between border-bottom">
+      <h3>プロフィール</h3>
+      <%= link_to "🖊編集", "/users/profile/edit", class: "text-decoration-none fs-4" %>
+    </div>
+    
+    <div class="pt-4">
+      <div class="d-flex row">
+        <p class="col-3">アイコン画像</p>
+        <div class="col-9">
+          <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar, size: '150x100' %>
+          <% else %>
+            <%= image_tag'default_avatar.png', size: '150x100' %>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="d-flex row">
+        <p class="col-3">名前</p>
+        <p class="col-9"><%= @user.name %></p>
+      </div>
+      
+      <div class="d-flex row">
+        <p class="col-3">自己紹介</p>
+        <p class="col-9"><%= @user.introduction %></p>
+      </div>
+    </div>
+
+  </div>
+</div>
